@@ -31,17 +31,21 @@ Things you may want to cover:
 | date_of_birth        | string | null: false              |
 | shipping_information | text   | null: false              |
 
-* has_one :shipping_infomation
+* has_one :shipping_information
 
 
-| product_information  | text   | null: false              |
-| purchase_record      | text   | null: false, unique: true|
-| shipping_information | text   | null: false              |
+| 出品者  | text   | null: false              |
+| カテゴリー      | text   | null: false, unique: true|
+| 商品の状態 | text   | null: false              |
+|配送料の負担
+|発送元の地域
+
+
 ## Association
 
 * has_many :product_information
 * has_one :purchase record
-* has_one :shipping_infomation
+* has_one :shipping_information
 
 
 
