@@ -6,7 +6,7 @@
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| name_id            | string              | null: false, unique: true | 
+| nickname_id        | string              | null: false, unique: true | 
 | email              | string              | null: false, unique: true |
 | encrypted_password | text                | null: false               |
 | first_name         | string              | null: false               |
@@ -24,9 +24,9 @@ has_many :orders
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
 | user_id            | references          | null: false               |
-| name_id            | string              | null: false               |
+| name_id            | integer             | null: false               |
 | description_id     | text                | null: false               |
-| price_id           | string              | null: false               |
+| price_id           | integer             | null: false               |
 | category_id        | integer             | null: false               |
 | charge_id          | integer             | null: false               |
 | delivery_region_id | integer             | null: false               |
