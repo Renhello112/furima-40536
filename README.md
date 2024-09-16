@@ -27,12 +27,8 @@ user
 
 | name               | string | null: false, unique: true | 
 | email              | string | null: false, unique: true |
-| password           | text   | null: false               |
-| profile_image      | string | null: false               |
-| address            | string | null: false               |
-| phone_number       | text   | null: false               |
-| registration_date  | string | null: false               |
-| rating             | string | null: false               |
+| encrypted_password | text   | null: false               |
+
 
 has_many :products
 has_many :orders
@@ -42,13 +38,11 @@ product
 | seller_id     | string   | null: false, unique: true |
 | name          | string   | null: false               |
 | description   | text     | null: false               |
-| price         | string   | null: false               |
+| price         | integer  | null: false               |
 | category_id   | string   | null: false               |
 | condition     | text     | null: false               |
-| image_urls    | string   | null: false               |
-| stock         | string   | null: false               |
-| created_at    | string   | null: false               |
-| status        | text     | null: false               |
+| stock         | integer  | null: false               |
+| status        | integer  | null: false               |
 
 
 ## Association
@@ -57,14 +51,8 @@ product
 * belongs_to :category_id
 
 Order
-| id              | string  | null: false               |
-| buyer_id        | string  | null: false, unique: true |
-| product_id      | string  | null: false, unique: true |
-| quantity        | text    | null: false               |
-| total_price     | string  | null: false               |
-| order_date      | string  | null: false               |
-| shipping_status | string  | null: false               |
-| payment_status  | string  | null: false               |
+| buyer_id        | references  | null: false, unique: true |
+| product_id      | references  | null: false, unique: true |
 
 * has_many :user
 
@@ -75,12 +63,6 @@ Category
 
 - belongs_to :product
 
-Payment
-| id                 | string | null: false               |
-| order_id           | string | null: false, unique: true |
-| payment_method     | string | null: false               |
-| payment_date       | string | null: false               |
-| amount             | string | null: false               |
-| status             | string | null: false               |
+
  
 （ここに追記していく）
