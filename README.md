@@ -25,25 +25,31 @@ Things you may want to cover:
 |Column|Type|Options|
 user
 
-| name               | string | null: false, unique: true | 
-| email              | string | null: false, unique: true |
-| encrypted_password | text   | null: false               |
+| name               | string  | null: false, unique: true | 
+| email              | string  | null: false, unique: true |
+| encrypted_password | text    | null: false               |
+| birth_date         | integer | null: false               |
 
 
 has_many :products
 has_many :orders
 
 product
-| id            | string       | null: false               |
-| seller_id     | references   | null: false, unique: true |
-| name          | string       | null: false               |
-| description   | text         | null: false               |
-| price         | integer      | null: false               |
-| category_id   | string       | null: false               |
-| condition     | text         | null: false               |
-| stock         | integer      | null: false               |
-| status        | integer      | null: false               |
-
+| id               | string       | null: false               |
+| seller           | references   | null: false, unique: true |
+| name             | string       | null: false               |
+| description      | integer      | null: false               |
+| price            | integer      | null: false               |
+| category_id      | string       | null: false               |
+| charge           | string       | null: false               |
+| delivery_region  | string       | null: false               |
+| condition_id     | string       | null: false               |
+| favorite         | string       | null: false               |
+| report           | string       | null: false               |
+| comment          | text         | null: false               |
+| status_id        | integer      | null: false               |
+| Shipping days_id | integer      |  null: false              |
+| stock            | integer      | null: false               |
 
 ## Association
 
@@ -51,27 +57,23 @@ product
 * belongs_to :category_id
 
 Order
-| buyer_id        | references  | null: false, unique: true |
-| product_id      | references  | null: false, unique: true |
+| buyer           | references  | null: false, unique: true |
+| product         | references  | null: false, unique: true |
 
 * belongs_to :user
 
 Category
 | id                 | string      | null: false |
 | name               | string      | null: false |
-| parent_category_id | references  | null: false |
+| parent_category    | references  | null: false |
 
 - belongs_to :product
 
 address
 | address_id     | string      | null: false |
-| user_id        | references  | null: false |
+| user           | references  | null: false |
 | recipient_name | string      | null: false |
-| postal_code    | VARCHAR(20) | null: false |
 | prefecture     | string      | null: false |
-| city           | string      | null: false |
-| address_line1  | string      | null: false |
-| address_line2  | stirng      | null: false |
 
 has_one :user
  
