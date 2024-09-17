@@ -31,7 +31,7 @@ has_many :orders
 | charge_id          | integer             | null: false               |
 | delivery_region_id | integer             | null: false               |
 | condition_id       | integer             | null: false               |
-| Shipping_days_id   | integer             | null: false               |
+| shipping_days_id   | integer             | null: false               |
 
 
 ## Association
