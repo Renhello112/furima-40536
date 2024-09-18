@@ -6,9 +6,9 @@
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| nickname_id        | string              | null: false, unique: true | 
+| nickname           | string              | null: false               |
 | email              | string              | null: false, unique: true |
-| encrypted_password | text                | null: false               |
+| encrypted_password | string              | null: false               |
 | first_name         | string              | null: false               |
 | given_name         | string              | null: false               |
 | birth_date         | date                | null: false               |
@@ -19,13 +19,13 @@
 has_many :products
 has_many :orders
 
-## product table
+## products table
 
 | Column             | Type                | Options                        |
 |--------------------|---------------------|--------------------------------|
 | user               | references          | null: false, foreign_key: true |
-| name_id            | string              | null: false                    |
-| description_id     | text                | null: false                    |
+| name               | string              | null: false                    |
+| description        | text                | null: false                    |
 | price_id           | integer             | null: false                    |
 | category_id        | integer             | null: false                    |
 | charge_id          | integer             | null: false                    |
