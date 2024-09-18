@@ -11,7 +11,7 @@
 | encrypted_password | text                | null: false               |
 | first_name         | string              | null: false               |
 | given_name         | string              | null: false               |
-| birth_date         | integer             | null: false               |
+| birth_date         | date                | null: false               |
 | given_name_reading | string              | null: false               |
 | first_name_reading | string              | null: false               |
 
@@ -21,60 +21,51 @@ has_many :orders
 
 ## product table
 
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| user_id            | references          | null: false               |
-| name_id            | integer             | null: false               |
-| description_id     | text                | null: false               |
-| price_id           | integer             | null: false               |
-| category_id        | integer             | null: false               |
-| charge_id          | integer             | null: false               |
-| delivery_region_id | integer             | null: false               |
-| condition_id       | integer             | null: false               |
-| shipping_days_id   | integer             | null: false               |
+| Column             | Type                | Options                        |
+|--------------------|---------------------|--------------------------------|
+| user               | references          | null: false, foreign_key: true |
+| name_id            | string              | null: false                    |
+| description_id     | text                | null: false                    |
+| price_id           | integer             | null: false                    |
+| category_id        | integer             | null: false                    |
+| charge_id          | integer             | null: false                    |
+| delivery_region_id | integer             | null: false                    |
+| condition_id       | integer             | null: false                    |
+| shipping_days_id   | integer             | null: false                    |
 
 
 ## Association
 
 * belongs_to :user
-* belongs_to :category_id
+* has_one :order
+* has_one :address
 
 ## order table
 
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| user               | references          | null: false, unique: true |
-| product            | references          | null: false, unique: true |
+| Column             | Type                | Options                        |
+|--------------------|---------------------|--------------------------------|
+| user               | references          | null: false, foreign_key: true |
+| product            | references          | null: false, foreign_key: true |
 
 ### Association
 
 * belongs_to :user
+* belongs_to :product
 
-## category table
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| id                 | string              | null: false               |
-| name               | string              | null: false               |
-| parent_category    | references          | null: false               |
-
-### Association
-
-- belongs_to :product
 
 ## address table
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| address_id         | string              | null: false               |
 | postcode           | string              | null: false               |
-| prefectures        | string              | null: false               |
+| prefectures        | integer             | null: false               |
 | city               | string              | null: false               |
 | street_address     | string              | null: false               |
-| building_name      | string              | null: false               |
+| building_name      | string              |                           |
 | phone_number       | string              | null: false               |
-| purchase_id        | references          | null: false               |
+
 
 ### Association
 
-- has_one :user
+- belongs_to :order
  
 （ここに追記していく）
