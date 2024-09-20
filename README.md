@@ -31,7 +31,7 @@ has_many :orders
 | charge_id          | integer             | null: false                    |
 | prefecture_id      | integer             | null: false                    |
 | condition_id       | integer             | null: false                    |
-| shipping_days_id   | integer             | null: false                    |
+| shipping_day_id    | integer             | null: false                    |
 
 
 ## Association
@@ -68,5 +68,3 @@ has_many :orders
 ### Association
 
 - belongs_to :order
- 
-（ここに追記していく）
