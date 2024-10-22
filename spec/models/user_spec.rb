@@ -84,6 +84,84 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'ａｂｃ123'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
+
+        it '姓（全角）が空だと登録できない' do
+          @user.given_name = ''
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name 全角文字を入力してください')
+        end
+
+        it '名（全角）に半角文字が含まれていると登録できない' do
+          @user.first_name = 'Taro' # 半角英字を含む名を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name 全角文字を入力してください')
+        end
+
+        it '姓（カナ）が空だと登録できない' do
+          @user.last_name_reading = '' # 姓（カナ）を空に設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name reading を入力してください')
+        end
+
+        it '姓（カナ）にカタカナ以外の文字（平仮名）が含まれていると登録できない' do
+          @user.last_name_reading = 'たろう' # 平仮名を含む姓（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name reading 全角カタカナを入力してください')
+        end
+
+        it '姓（カナ）にカタカナ以外の文字（漢字）が含まれていると登録できない' do
+          @user.last_name_reading = '太郎' # 漢字を含む姓（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name reading 全角カタカナを入力してください')
+        end
+
+        it '姓（カナ）にカタカナ以外の文字（英数字）が含まれていると登録できない' do
+          @user.last_name_reading = 'Taro123' # 英数字を含む姓（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name reading 全角カタカナを入力してください')
+        end
+
+        it '姓（カナ）にカタカナ以外の文字（記号）が含まれていると登録できない' do
+          @user.last_name_reading = 'タロウ@' # 記号を含む姓（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Last name reading 全角カタカナを入力してください')
+        end
+
+        it '名（カナ）が空だと登録できない' do
+          @user.first_name_reading = '' # 名（カナ）を空に設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name reading を入力してください')
+        end
+
+        it '名（カナ）にカタカナ以外の文字（平仮名）が含まれていると登録できない' do
+          @user.first_name_reading = 'たろう' # 平仮名を含む名（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name reading 全角カタカナを入力してください')
+        end
+
+        it '名（カナ）にカタカナ以外の文字（漢字）が含まれていると登録できない' do
+          @user.first_name_reading = '太郎' # 漢字を含む名（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name reading 全角カタカナを入力してください')
+        end
+
+        it '名（カナ）にカタカナ以外の文字（英数字）が含まれていると登録できない' do
+          @user.first_name_reading = 'Taro123' # 英数字を含む名（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name reading 全角カタカナを入力してください')
+        end
+
+        it '名（カナ）にカタカナ以外の文字（記号）が含まれていると登録できない' do
+          @user.first_name_reading = 'タロウ@' # 記号を含む名（カナ）を設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('First name reading 全角カタカナを入力してください')
+        end
+
+        it '生年月日が空だと登録できない' do
+          @user.birth_date = '' # 生年月日を空に設定
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Birth date を入力してください')
+        end
       end
     end
   end

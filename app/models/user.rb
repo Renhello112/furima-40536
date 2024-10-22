@@ -5,17 +5,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
-
-  has_many :products
-  has_many :orders
+  validates :password
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
-    validates :first_name, presence: true
-    validates :given_name, presence: true
+  with_options presence: true do
+    validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' }
+    validates :given_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' }
+
+    validates :first_name_reading, format: { with: /\A[ァ-ヶー－]+\z/, message: '全角カタカナを使用してください' }
+    validates :given_name_reading, format: { with: /\A[ァ-ヶー－]+\z/, message: '全角カタカナを使用してください' }
+
+    validates :birth_date
   end
 end
